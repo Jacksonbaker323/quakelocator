@@ -1,0 +1,16 @@
+{
+  "name": "quakelocator",
+  "version": "0.1.0",
+  "authors": [
+    "Jackson Baker <Jacksonbaker323@Gmail.com>"
+  ],
+  "description": "Display a list of earthquakes near you. Data from USGS.",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

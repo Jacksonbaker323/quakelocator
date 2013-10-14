@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app='quakes'>
+  	<head>
+    	<title>Quake Locator</title>
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" media="screen">
+	</head>
+  	<body>
+    	<h1>Hello, world!</h1>
+    	<div ng-controller="QuakeCtrl" data-ng-init="get_quakes()">
+    		<button class="btn btn-default" ng-click="get_quakes()">Quakes</button>
+    	</div>
+
+
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/lodash/dist/lodash.js"></script>
+    <script src="bower_components/restangular/dist/restangular.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
