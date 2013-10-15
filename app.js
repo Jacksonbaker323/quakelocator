@@ -2,18 +2,19 @@
 angular.module('quakes', []);
 
 function QuakeCtrl($scope, $http) {
-
+	$scope.data = null;
 	$scope.get_quakes = function() {
 		//$scope.Quakes = Restangular.all('all_day.geojsonp').getList();
 		var url = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojsonp';
-		$http.jsonp(url);
-
+		$http.jsonp(url)
 	}
 
-}
+	window.eqfeed_callback = function(data) {
+		$scope.data = data;
+		console.log($scope.data);
+		parse_data($scope.data);
+	}
 
-function eqfeed_callback(data) {
-	parse_data(data);
 }
 
 function parse_data(data) {
