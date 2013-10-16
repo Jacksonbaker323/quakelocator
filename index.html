@@ -7,8 +7,11 @@
 	</head>
   	<body>
     	<h1>Hello, world!</h1>
-    	<div ng-controller="QuakeCtrl" data-ng-init="get_quakes()">
-    		<button class="btn btn-default" ng-click="get_quakes()">Quakes</button>
+    	<div ng-controller="QuakeCtrl" data-ng-init="get_location()" ng-model="data">
+    		<button class="btn btn-default" ng-click="get_location()">Refresh!</button>
+            <div ng-repeat="quake in data">
+                {{quake.Magnitude}} {{quake.Latitude}}
+            </div>
     	</div>
 
 
