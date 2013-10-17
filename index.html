@@ -9,9 +9,22 @@
     	<h1>Hello, world!</h1>
     	<div ng-controller="QuakeCtrl" data-ng-init="get_location()" ng-model="data">
     		<button class="btn btn-default" ng-click="get_location()">Refresh!</button>
-            <div ng-repeat="quake in data">
-                {{quake.Magnitude}} {{quake.Latitude}}
-            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Magnitude</td>
+                        <td>Distance</td>
+                        <td>Place</td>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="quake in data" class="{{quake.Class}}">
+                    <td>{{quake.Magnitude}}</td>
+                    <td>{{quake.Distance}} km</td>
+                    <td>{{quake.Place}}</td>
+                </tr>
+            </tbody>
+            </table>
     	</div>
 
 
@@ -19,7 +32,6 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/lodash/dist/lodash.js"></script>
-    <script src="bower_components/restangular/dist/restangular.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

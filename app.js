@@ -25,6 +25,7 @@ function QuakeCtrl($scope, $http, $window) {
 
 	$window.eqfeed_callback = function(data) {
 		$scope.data = parse_data(data, $scope.latitude, $scope.longitude);
+		$scope.data = _.sortBy($scope.data, function(quake){ return quake.Distance});
 	}
 
 }
@@ -38,9 +39,12 @@ function parse_data(data, latitude, longitude) {
 		quake.Latitude = feature.geometry.coordinates[1];
 		quake.Depth = feature.geometry.coordinates[2];
 		quake.Place = feature.properties.place;
+		quake.Distance = calc_distance(latitude, longitude, quake.Latitude, quake.Longitude);
+		if (quake.Distance < 100) {
+			quake.Class = 'danger';
+		}
 		quakes.push(quake);
-		console.log(latitude);
-		console.log(longitude);
+		console.log(quake);
 	});
 	return quakes;
 }
