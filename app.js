@@ -44,7 +44,6 @@ function parse_data(data, latitude, longitude) {
 			quake.Class = 'danger';
 		}
 		quakes.push(quake);
-		console.log(quake);
 	});
 	return quakes;
 }
