@@ -12,5 +12,10 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "devDependencies": {
+    "angular": "~1.0.8",
+    "bootstrap": "~3.0.0",
+    "lodash": "~2.2.1"
+  }
 }
