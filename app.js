@@ -23,9 +23,14 @@ function QuakeCtrl($scope, $http, $window) {
 		$http.jsonp(url)
 	}
 
+	$scope.remove_spinner = function() {
+		$('.loading-spinner').hide();
+	}
+
 	$window.eqfeed_callback = function(data) {
 		$scope.data = parse_data(data, $scope.latitude, $scope.longitude);
 		$scope.data = _.sortBy($scope.data, function(quake){ return quake.Distance});
+		$scope.remove_spinner();
 	}
 
 }
@@ -40,8 +45,12 @@ function parse_data(data, latitude, longitude) {
 		quake.Depth = feature.geometry.coordinates[2];
 		quake.Place = feature.properties.place;
 		quake.Distance = calc_distance(latitude, longitude, quake.Latitude, quake.Longitude);
-		if (quake.Distance < 100) {
+		if (quake.Distance < 30) {
 			quake.Class = 'danger';
+		} else if (quake.Distance > 31 && quake.Distance < 100) {
+			quake.Class = 'warning'
+		} else if (quake.Distance > 101) {
+			quake.Class = 'info'
 		}
 		quakes.push(quake);
 	});
