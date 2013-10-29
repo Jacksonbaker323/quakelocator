@@ -1,8 +1,17 @@
 //http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson
-angular.module('quakes', []);
+var app = angular.module('quakes', ['google-maps']);
 
 function QuakeCtrl($scope, $http, $window) {
 	$scope.data = null;
+
+	angular.extend($scope, {
+		center: {
+			latitude: 0,
+			longitude: 0,
+		},
+		markers:[],
+		zoom:8,
+	});
 
 	$scope.get_location = function() {
 		if (navigator.geolocation){
@@ -47,7 +56,7 @@ function parse_data(data, latitude, longitude) {
 		quake.Distance = calc_distance(latitude, longitude, quake.Latitude, quake.Longitude);
 		if (quake.Distance < 30) {
 			quake.Class = 'danger';
-		} else if (quake.Distance > 31 && quake.Distance < 100) {
+		} else if (quake.Distance > 31 && quake.Distance <= 100) {
 			quake.Class = 'warning'
 		} else if (quake.Distance > 101) {
 			quake.Class = 'info'
