@@ -36,13 +36,25 @@ function QuakeCtrl($scope, $http, $window) {
 		$('.loading-spinner').hide();
 	}
 
+	$scope.set_location = function(latitude, longitude) {
+		console.log([latitude, longitude]);
+		$scope.center = {
+			Latitude: latitude, 
+			Longitude: longitude
+		};
+	}
+
 	$window.eqfeed_callback = function(data) {
 		$scope.data = parse_data(data, $scope.latitude, $scope.longitude);
 		$scope.data = _.sortBy($scope.data, function(quake){ return quake.Distance});
 		$scope.remove_spinner();
 	}
-
 }
+
+
+
+
+//Helper Functions
 
 function parse_data(data, latitude, longitude) {
 	var quakes = [];
@@ -77,7 +89,6 @@ function calc_distance(lat1,lon1,lat2,lon2) {
   	var d = R * c; // Distance in km
     return Math.floor(d);
 }
-
 
 function deg2rad(deg) {
 	return deg * (Math.PI/180);

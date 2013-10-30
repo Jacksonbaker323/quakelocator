@@ -13,7 +13,9 @@
             <div class="col-lg-4 col-sm-4">
                 <i class="fa fa-spinner fa-spin fa-5x loading-spinner"></i>
                 <div class="btn-group-vertical">
-                    <button type="button" class="btn btn-{{quake.Class}}" ng-repeat="quake in data"> {{quake.Magnitude}} @ {{quake.Distance}} km</button>
+                    <button type="button" class="btn btn-{{quake.Class}}" ng-repeat="quake in data" ng-click="set_location(quake.Latitude, quake.Longitude)"> 
+                        {{quake.Magnitude}} @ {{quake.Distance}} km
+                    </button>
                 </div>
             </div>
             <div class="col-lg-8 col-sm-8">
@@ -27,8 +29,9 @@
                     style="height: 1000px; width: 100%">
                 </div>
             </div>
+        </div>
 
-    	</div>
+
 
 
     <script src="bower_components/jquery/jquery.js"></script>
