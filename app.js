@@ -19,10 +19,18 @@ function QuakeCtrl($scope, $http, $window) {
             	$scope.latitude = position.coords.latitude;
             	$scope.longitude = position.coords.longitude;
             	$scope.get_quakes();
+            	$scope.center = {
+            		latitude: $scope.latitude,
+            		longitude: $scope.longitude
+            	}
             });
         } else {
         	$scope.latitude = 47.6;
         	$scope.longitude = -122.3;
+        	$scope.center = {
+        		latitude: $scope.latitude,
+        		longitude: $scope.longitude
+        	}
         	$scope.get_quakes();
         } 
 	}
@@ -39,9 +47,11 @@ function QuakeCtrl($scope, $http, $window) {
 	$scope.set_location = function(latitude, longitude) {
 		console.log([latitude, longitude]);
 		$scope.center = {
-			Latitude: latitude, 
-			Longitude: longitude
+			latitude: latitude, 
+			longitude: longitude
 		};
+		$scope.markers = [{latitude: latitude, longitude: longitude}];
+		$scope.$apply();
 	}
 
 	$window.eqfeed_callback = function(data) {
