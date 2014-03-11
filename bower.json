@@ -1,23 +1,17 @@
 {
   "name": "quakelocator",
-  "version": "0.1.0",
-  "authors": [
-    "Jackson Baker <Jacksonbaker323@Gmail.com>"
-  ],
-  "description": "Display a list of earthquakes near you. Data from USGS.",
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "1.2.6",
+    "json3": "~3.2.6",
+    "es5-shim": "~2.1.0",
+    "jquery": "~1.10.2",
+    "sass-bootstrap": "~3.0.2",
+    "angular-resource": "1.2.6"
+  },
   "devDependencies": {
-    "angular": "~1.0.8",
-    "bootstrap": "~3.0.0",
-    "lodash": "~2.2.1",
-    "font-awesome": "~4.0.0",
-    "angular-google-maps": "*"
+    "angular-mocks": "1.2.6",
+    "angular-scenario": "1.2.6",
+    "angular-google-maps": "~1.0.15"
   }
 }
