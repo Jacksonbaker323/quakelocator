@@ -19,7 +19,8 @@ angular.module('quakelocatorApp',['google-maps'])
         center: {
           latitude: position.coords.latitude,
           longitude: position.coords.longitude
-        }
+        },
+        zoom: 8
       }
     }, function(reason){
       console.log('cant get location');
