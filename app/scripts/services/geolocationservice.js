@@ -1,7 +1,7 @@
 'use strict';
 //http://proccli.com/2013/10/angularjs-geolocation-service
 angular.module('quakelocatorApp')
-  .factory('GeolocationService', ['$q', '$window','$rootScope', function ($q, $window, $rootScope) {
+  .factory('geolocationservice', ['$q', '$window','$rootScope', function ($q, $window, $rootScope) {
     return function() {
       var d = $q.defer();
       if (!$window.navigator) {
