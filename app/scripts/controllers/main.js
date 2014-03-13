@@ -2,7 +2,7 @@
 
 angular.module('quakelocatorApp',['google-maps'])
   .controller('MainCtrl', ['$scope', 'GeolocationService', function ($scope, geolocation) {
-
+  
   //Get Location data
   $scope.get_location = function() {
     $scope.map = {

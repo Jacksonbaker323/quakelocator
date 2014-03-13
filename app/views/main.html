@@ -15,9 +15,12 @@
   </p>
   <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!</a></p>
 </div>-->
+<style>
+.angular-google-map-container { height:100%; width:100%; position:absolute; top:0; left:0; }
+</style>
 <div ng-init="get_location()">
-  {{map.center}}
-<google-map center="map.center" zoom="map.zoom" draggable="true"></google-map>
+  Latitude: {{map.center.latitude}} Longitude: {{map.center.longitude}}  Zoom: {{map.zoom}}
+<google-map id="google-map" center="map.center" zoom="map.zoom" draggable="true"></google-map>
 </div>
 <!--<div class="row marketing">
   <h4>HTML5 Boilerplate</h4>
