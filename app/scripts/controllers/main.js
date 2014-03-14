@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('quakelocatorApp',['google-maps'])
-  .controller('MainCtrl', ['$scope', 'geolocationservice','usgsearthquakeservice', function ($scope, geolocation, earthquake) {
+  .controller('MainCtrl', ['$scope', 'geolocationservice', function ($scope, geolocation) {
 
   //Get Location data
   $scope.get_location = function() {
@@ -12,7 +12,6 @@ angular.module('quakelocatorApp',['google-maps'])
       },
       zoom: 8
     }
-    earthquake.fetch();
     //Get information from the Geolocation factory service
     var position = null;
     geolocation().then(function(position){
