@@ -10,7 +10,7 @@ angular.module('quakelocatorApp',['google-maps'])
         latitude: 0,
         longitude: 0
       },
-      data: [{latitude: 0, longitude: 0}],
+      data: [{coords:{latitude: 100, longitude: 100}}],
       zoom: 8
     }
     //Get information from the Geolocation factory service
@@ -21,7 +21,7 @@ angular.module('quakelocatorApp',['google-maps'])
           latitude: position.coords.latitude,
           longitude: position.coords.longitude
         },
-        data: [{latitude: 0, longitude: 0}],
+        data: [{coords:{latitude: 100, longitude: 100}}],
         zoom: 8
       }
       $scope.get_quakes();
