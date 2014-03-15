@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('quakelocatorApp',['google-maps'])
-  .controller('MainCtrl', ['$scope', 'geolocationservice', function ($scope, geolocation) {
+  .controller('MainCtrl', ['$scope', '$http', '$window', 'geolocationservice', function ($scope, $http, $window, geolocation) {
 
   //Get Location data
   $scope.get_location = function() {
@@ -10,6 +10,7 @@ angular.module('quakelocatorApp',['google-maps'])
         latitude: 0,
         longitude: 0
       },
+      data: [{latitude: 0, longitude: 0}],
       zoom: 8
     }
     //Get information from the Geolocation factory service
@@ -20,32 +21,42 @@ angular.module('quakelocatorApp',['google-maps'])
           latitude: position.coords.latitude,
           longitude: position.coords.longitude
         },
+        data: [{latitude: 0, longitude: 0}],
         zoom: 8
       }
+      $scope.get_quakes();
     }, function(reason){
       console.log('cant get location');
     });
   }
-}]);
 
+  $scope.get_quakes = function() {
+    var url = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojsonp';
+    $http.jsonp(url);
+  }
 
+  $window.eqfeed_callback = function(data) {
+    $scope.map.data = $scope.parse_data(data, $scope.map.center.latitude, $scope.map.center.longitude);    
+  }
 
-//Helper Functions
-
-function parse_data(data, latitude, longitude) {
+  $scope.parse_data = function(data, latitude, longitude) {
     var quakes = [];
     data.features.map(function(feature){
-        var quake = {};
-        quake.Magnitude = feature.properties.mag;
-        quake.Longitude = feature.geometry.coordinates[0];
-        quake.Latitude = feature.geometry.coordinates[1];
-        quake.Depth = feature.geometry.coordinates[2];
-        quake.Place = feature.properties.place;
-        quake.Distance = calc_distance(latitude, longitude, quake.Latitude, quake.Longitude);
+        var quake = {coords:{}};
+        quake.magnitude = feature.properties.mag;
+        quake.coords.longitude = feature.geometry.coordinates[0];
+        quake.coords.latitude = feature.geometry.coordinates[1];
+        quake.depth = feature.geometry.coordinates[2];
+        quake.place = feature.properties.place;
+        quake.distance = calc_distance(latitude, longitude, quake.Latitude, quake.Longitude);
         quakes.push(quake);
     });
+    console.log(quakes);
     return quakes;
-}
+  }
+}]);
+
+//Helper Functions
 
 function calc_distance(lat1,lon1,lat2,lon2) {
     var R = 6371; // Radius of the earth in km

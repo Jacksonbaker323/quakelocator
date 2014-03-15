@@ -2,5 +2,7 @@
 .angular-google-map-container { height:100%; width:100%; position:absolute; top:0; left:0; }
 </style>
 <div ng-init="get_location()">
-<google-map id="google-map" center="map.center" zoom="map.zoom" draggable="true"></google-map>
+    <google-map id="google-map" center="map.center" zoom="map.zoom" draggable="true">
+        <markers models="map.data" coords="'coords'"></markers>
+    </google-map>
 </div>
