@@ -3,6 +3,6 @@
 </style>
 <div ng-init="get_location()">
     <google-map id="google-map" center="map.center" zoom="map.zoom" draggable="true">
-        <markers models="map.data" coords="'coords'"></markers>
+        <markers models="map.data" coords="'coords'" labelContent="'magnitude'" doCluster="true" ></markers>
     </google-map>
 </div>
