@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('quakelocatorApp', ['geolocation'])
-  .controller('MainCtrl', function ($scope, $window, $http, geolocation) {
+  .controller('MainCtrl', function ($scope, $window, $http, geolocation, ParseEarthquakeData) {
     //Setup our data structure
     $scope.map = {
       data: [],
