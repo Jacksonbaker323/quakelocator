@@ -2,22 +2,11 @@
 
 angular.module('quakelocatorApp', ['geolocation'])
   .controller('MainCtrl', function ($scope, $window, $http, geolocation, ParseEarthquakeData) {
-    //Setup our data structure
-    $scope.map = {
-      data: [],
-      center: {
-        latitude: '',
-        longitude: ''
-      }
-    }
-
     //Get the users location
     geolocation.getLocation().then(function(data){
-      $scope.coords = {
-        latitude: data.coords.latitude,
-        longitude: data.coords.longitude
-      }
-      console.log($scope.coords)
+      $scope.latitude = data.coords.latitude;
+      $scope.longitude = data.coords.longitude;
+      console.log(data.coords.latitude, data.coords.longitude);
       $scope.get_quakes();
     });
 
@@ -27,7 +16,6 @@ angular.module('quakelocatorApp', ['geolocation'])
     }
 
     $window.eqfeed_callback = function(data) {
-      //$scope.map.data = $scope.parse_data(data, $scope.map.center.latitude, $scope.map.center.longitude);
-      $scope.map.data = ParseEarthquakeData.parseData(data, $scope.map.center.latitude, $scope.map.center.longitude);
+      $scope.data = ParseEarthquakeData.parseData(data, $scope.latitude, $scope.longitude);
     }
   });
